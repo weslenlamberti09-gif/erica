@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nossa História ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:linear-gradient(#120014,#3a0028);color:#fff;overflow-x:hidden}
+section{min-height:100vh;padding:40px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+h1{font-size:3rem} h2{margin-bottom:20px}
+p{max-width:900px;line-height:1.8}
+.btn{padding:15px 30px;border:none;border-radius:40px;background:#ff4f8b;color:#fff;cursor:pointer}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;width:100%;max-width:1100px}
+.photo img{width:100%;border-radius:12px;cursor:pointer;transition:.3s}
+.photo img:hover{transform:scale(1.05)}
+.card{background:rgba(255,255,255,.08);padding:20px;border-radius:20px;margin:10px;max-width:800px}
+.heart{position:fixed;top:-30px;cursor:pointer;z-index:999}
+@keyframes fall{to{transform:translateY(110vh)}}
+.benjamin{width:300px;height:300px;object-fit:cover;border-radius:50%;border:6px solid #ff8ab3;animation:pulse 2s infinite;box-shadow:0 0 30px #ff8ab3}
+@keyframes pulse{50%{transform:scale(1.1)}}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);justify-content:center;align-items:center;z-index:5000}
+.modal img{max-width:90%;max-height:90%}
+.counter{font-size:2rem;margin-top:20px}
+#typing{white-space:pre-wrap;max-width:900px}
+.star{position:fixed;width:2px;height:2px;background:white}
+</style>
+</head>
+<body>
+
+<audio id="music" loop><source src="musica.mp3"></audio>
+
+<div class="modal" id="modal"><img id="modalImg"></div>
+
+<section id="home">
+<h1>❤️ Érica ❤️</h1>
+<p>Algumas histórias começam por acaso. A nossa se transformou na melhor parte da minha vida.</p>
+<br>
+<button class="btn" onclick="startSite()">Começar Nossa História</button>
+</section>
+
+<section id="inicio">
+<h2>✨ 22 de Agosto de 2021 ✨</h2>
+<p>Foi nesse dia que começou a nossa história. Naquele momento éramos apenas nós dois, cheios de sonhos, planos e expectativas para o futuro.</p>
+</section>
+
+<section>
+<h2>📸 Nossas Memórias</h2>
+<div class="gallery">
+<div class="photo"><img src="foto1.jpg"></div>
+<div class="photo"><img src="foto2.jpg"></div>
+<div class="photo"><img src="foto3.jpg"></div>
+<div class="photo"><img src="foto4.jpg"></div>
+<div class="photo"><img src="foto5.jpg"></div>
+<div class="photo"><img src="foto6.jpg"></div>
+</div>
+</section>
+
+<section>
+<h2>❤️ Nossa Jornada ❤️</h2>
+<div class="card">Começamos apenas nós dois.</div>
+<div class="card">Compartilhamos sonhos, conquistas e desafios.</div>
+<div class="card">Aprendemos a crescer juntos e construir algo especial.</div>
+</section>
+
+<section>
+<h2>👶 Nosso Maior Presente 👶</h2>
+<img src="benjamin.jpg" class="benjamin" id="benjamin">
+<p>
+Então o amor ganhou uma nova forma.
+O Benjamin chegou e trouxe ainda mais felicidade para nossas vidas.
+Hoje, quando olho para você e para ele, vejo tudo aquilo que um dia sonhamos construir.
+</p>
+</section>
+
+<section>
+<h2>👨‍👩‍👦 Hoje Somos Uma Família</h2>
+<p>
+Já não somos apenas nós dois.
+Hoje somos três.
+E essa é a maior conquista da minha vida.
+</p>
+</section>
+
+<section>
+<h2>💌 Carta Para Você</h2>
+<p id="typing"></p>
+</section>
+
+<section>
+<h2>⏳ Nosso Tempo Juntos</h2>
+<div class="counter" id="counter"></div>
+</section>
+
+<section>
+<h2>❤️ Feliz Dia dos Namorados ❤️</h2>
+<p>
+Érica, obrigado por cada momento, cada abraço, cada sorriso e por construir essa família maravilhosa ao meu lado.
+Eu escolheria você novamente todos os dias.
+Eu amo você. ❤️
+</p>
+</section>
+
+<script>
+for(let i=0;i<150;i++){
+ let s=document.createElement('div');
+ s.className='star';
+ s.style.left=Math.random()*100+'vw';
+ s.style.top=Math.random()*100+'vh';
+ document.body.appendChild(s);
+}
+
+function startSite(){
+ document.getElementById('music').play().catch(()=>{});
+ document.getElementById('inicio').scrollIntoView({behavior:'smooth'});
+}
+
+function explosao(x,y){
+ for(let i=0;i<10;i++){
+   const e=document.createElement('div');
+   e.innerHTML='❤️';
+   e.style.position='fixed';
+   e.style.left=x+'px';
+   e.style.top=y+'px';
+   const a=Math.random()*360;
+   const d=40+Math.random()*80;
+   e.animate([{transform:'translate(0,0)',opacity:1},
+   {transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) scale(0)`,opacity:0}],{duration:700});
+   document.body.appendChild(e);
+   setTimeout(()=>e.remove(),700);
+ }
+}
+
+setInterval(()=>{
+ let h=document.createElement('div');
+ h.className='heart';
+ h.innerHTML='❤️';
+ h.style.left=Math.random()*100+'vw';
+ h.style.fontSize=(15+Math.random()*25)+'px';
+ h.style.animation='fall '+(4+Math.random()*4)+'s linear forwards';
+ h.onclick=(e)=>{explosao(e.clientX,e.clientY);h.remove();}
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),9000);
+},200);
+
+document.querySelectorAll('.photo img').forEach(img=>{
+ img.onclick=()=>{
+  modal.style.display='flex';
+  modalImg.src=img.src;
+ }
+});
+modal.onclick=()=>modal.style.display='none';
+
+const texto=`Meu amor,
+
+Quando olho para trás, vejo o quanto nossa vida mudou desde 22 de agosto de 2021.
+
+Tudo começou com nós dois e muitos sonhos.
+
+Com o tempo construímos memórias, enfrentamos desafios, comemoramos conquistas e crescemos juntos.
+
+Então recebemos o maior presente das nossas vidas: o Benjamin.
+
+Hoje somos uma família linda.
+
+Obrigado por estar ao meu lado.
+Obrigado por acreditar em nós.
+Obrigado por compartilhar a vida comigo.
+
+Você é uma mulher incrível, uma mãe maravilhosa e a pessoa que eu quero ao meu lado em todos os próximos capítulos da minha história.
+
+Eu te amo infinitamente.
+
+Feliz Dia dos Namorados ❤️`;
+
+let i=0;
+(function type(){
+ if(i<texto.length){
+  typing.innerHTML+=texto.charAt(i++);
+  setTimeout(type,25);
+ }
+})();
+
+const inicio=new Date('2021-08-22');
+function atualizar(){
+ let agora=new Date();
+ let dias=Math.floor((agora-inicio)/(1000*60*60*24));
+ counter.innerHTML='❤️ Juntos há '+dias+' dias ❤️';
+}
+atualizar();
+
+const ob=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+  if(e.isIntersecting){
+   for(let i=0;i<15;i++){
+    setTimeout(()=>explosao(innerWidth/2,innerHeight/2),i*80);
+   }
+  }
+ })
+});
+ob.observe(document.getElementById('benjamin'));
+</script>
+</body>
+</html>
